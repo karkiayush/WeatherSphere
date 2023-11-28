@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sunny_background"
+    tools:context=".SplashScreen">
+
+
+    <SearchView
+        android:id="@+id/searchView"
+        style="@style/SearchViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/searchviewbg"
+        android:elevation="20dp"
+        android:fontFamily="@font/worksans"
+        android:iconifiedByDefault="false"
+        android:queryHint="Find Weather"
+        android:searchIcon="@drawable/search2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/locationId"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/worksans"
+        android:text="Kathmandu"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/locationIconId"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/locationId"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:srcCompat="@drawable/location" />
+
+
+    <!--<ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="116dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/sun4"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="198dp" />-->
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sunAnimationId"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationId"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/sun" />
+
+    <TextView
+        android:id="@+id/dayId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="80dp"
+        android:fontFamily="@font/worksans"
+        android:text="Today"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationId"
+        tools:ignore="HardcodedText" />
+
+
+<!--    For copy paste-->
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
+
+
+    <TextView
+        android:id="@+id/tempId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="96dp"
+        android:fontFamily="@font/worksans"
+        android:text="31 \u2103"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayId"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/maxTempId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/worksans"
+        android:text="Min: 10.22 \u2103"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minTempId"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/minTempId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
+        android:fontFamily="@font/worksans"
+        android:text="Max: 23.22 \u2103"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempId"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/weekDayId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/worksans"
+        android:text="Sunday"
+        android:textColor="@color/black"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxTempId"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/dateId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/worksans"
+        android:text="01 January 2023"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekDayId"
+        tools:ignore="HardcodedText" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
