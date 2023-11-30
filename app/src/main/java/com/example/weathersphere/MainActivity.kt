@@ -132,13 +132,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             "Partly Clouds", "Clouds", "Overcast", "Mist", "Foggy" -> {
-                binding.root.setBackgroundResource(R.drawable.colud_background)
+                binding.root.setBackgroundResource(R.drawable.cloudbg)
                 binding.lottieAnimationId.setAnimation(R.raw.cloud)
                 binding.conditionBgImg.setImageResource(R.drawable.cloudyday1)
             }
 
             "Light Rain", "Drizzle", "Heavy Rain", "Moderate Rain", "Showers" -> {
-                binding.root.setBackgroundResource(R.drawable.rain_background)
+                binding.root.setBackgroundResource(R.drawable.rainbg)
                 binding.lottieAnimationId.setAnimation(R.raw.rain)
                 binding.conditionBgImg.setImageResource(R.drawable.rain)
             }
