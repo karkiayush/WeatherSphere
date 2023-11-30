@@ -29,7 +29,7 @@
     <TextView
         android:id="@+id/locationId"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="35dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/worksans"
@@ -67,7 +67,7 @@
 
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/sunAnimationId"
+        android:id="@+id/lottieAnimationId"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="4dp"
@@ -90,7 +90,7 @@
         android:textSize="29sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunAnimationId"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationId"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -357,8 +357,9 @@
                 tools:ignore="UselessLeaf">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/conditionBgImg"
+                    android:layout_width="41dp"
+                    android:layout_height="43dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:src="@drawable/cloudyday1"

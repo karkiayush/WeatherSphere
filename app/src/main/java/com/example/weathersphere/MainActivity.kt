@@ -3,6 +3,7 @@ package com.example.weathersphere
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weathersphere.databinding.ActivityMainBinding
 import retrofit2.Call
@@ -31,36 +32,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        getWeatherData()
+        getWeatherData("Kathmandu")
+        searchCity()
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private fun convertUnixTimestampToTime(unixTimestamp: Long): String {
-        val date =
-            Date(unixTimestamp * 1000L) // Multiply by 1000 to convert seconds to milliseconds
-        val sdf = SimpleDateFormat("HH:mm a") // Format the date as per your requirement
-        return sdf.format(date)
-    }
+    private fun searchCity() {
+        val searchView = binding.searchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    getWeatherData(query)
+                    searchView.clearFocus()
+                }
+                return true
+            }
 
-    @SuppressLint("SimpleDateFormat")
-    fun convertUnixTimestampToDate(unixTimestamp: Long): String {
-        val date =
-            Date(unixTimestamp * 1000L) // Multiply by 1000 to convert seconds to milliseconds
-        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.US) // Adjust the format pattern as needed
-        return sdf.format(date)
-    }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
 
-    fun getDayOfWeekFromTimestamp(timestamp: Long): String {
-        val date = Date(timestamp * 1000L) // Multiply by 1000 to convert seconds to milliseconds
-        val sdf = SimpleDateFormat(
-            "EEEE",
-            Locale.US
-        ) // "EEEE" will give the full name of the day (e.g., Monday)
-        return sdf.format(date)
+        })
     }
 
 
-    private fun getWeatherData() {
+    private fun getWeatherData(city: String) {
         val inputFieldRef = findViewById<SearchView>(R.id.searchView)
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -69,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             .create(ApiInterface::class.java)
 
         val response =
-            retrofit.getWeatherData("Kathmandu", "c9454baee04c4abfa42bf5331bd37b17", "metric")
+            retrofit.getWeatherData(city, "c9454baee04c4abfa42bf5331bd37b17", "metric")
         //We need to add in the callback function, that class from where data comes
         response.enqueue(object : Callback<WeatherApp> {
             @SuppressLint("SetTextI18n")
@@ -93,14 +88,14 @@ class MainActivity : AppCompatActivity() {
                     binding.dateId.text = date
 
                     val humidityRate = responseBody.main.humidity
-                    binding.humidityValueId.text = humidityRate.toString()
+                    binding.humidityValueId.text = "$humidityRate %"
 
                     val dayCondition = responseBody.weather.firstOrNull()?.main ?: "unknown"
                     binding.dayConditionId.text = dayCondition
                     binding.weatherConditionId.text = dayCondition
 
                     val windspeed = responseBody.wind.speed
-                    binding.windSpeedValueId.text = windspeed.toString()
+                    binding.windSpeedValueId.text = "$windspeed m/s"
 
                     val sunsetTimeStamp = responseBody.sys.sunset.toLong()
                     val sunsetTime = convertUnixTimestampToTime(sunsetTimeStamp)
@@ -112,13 +107,73 @@ class MainActivity : AppCompatActivity() {
 
                     val sealevel = responseBody.main.pressure
                     binding.seaLevelValueId.text = sealevel.toString()
+
+                    binding.locationId.text = city
+
+                    changeImagesDynamically(dayCondition)
+                } else {
+                    Toast.makeText(this@MainActivity, "Wrong city nane", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<WeatherApp>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@MainActivity, "Fail to load Data", Toast.LENGTH_SHORT).show()
             }
 
         })
+    }
+
+    private fun changeImagesDynamically(weatherCondition: String) {
+        when (weatherCondition) {
+            "Clear Sky", "Sunny", "Clear" -> {
+                binding.root.setBackgroundResource(R.drawable.sunny_background)
+                binding.lottieAnimationId.setAnimation(R.raw.sun)
+                binding.conditionBgImg.setImageResource(R.drawable.sun2)
+            }
+
+            "Partly Clouds", "Clouds", "Overcast", "Mist", "Foggy" -> {
+                binding.root.setBackgroundResource(R.drawable.colud_background)
+                binding.lottieAnimationId.setAnimation(R.raw.cloud)
+                binding.conditionBgImg.setImageResource(R.drawable.cloudyday)
+            }
+
+            "Light Rain", "Drizzle", "Heavy Rain", "Moderate Rain", "Showers" -> {
+                binding.root.setBackgroundResource(R.drawable.rain_background)
+                binding.lottieAnimationId.setAnimation(R.raw.rain)
+                binding.conditionBgImg.setImageResource(R.drawable.rain)
+            }
+
+            "Light Snow", "Moderate Snow", "Heavy Snow", "Blizzard" -> {
+                binding.root.setBackgroundResource(R.drawable.snow_background)
+                binding.lottieAnimationId.setAnimation(R.raw.snow)
+                binding.conditionBgImg.setImageResource(R.drawable.snowy)
+            }
+        }
+
+        binding.lottieAnimationId.playAnimation()
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun convertUnixTimestampToTime(unixTimestamp: Long): String {
+        val date =
+            Date(unixTimestamp * 1000L) // Multiply by 1000 to convert seconds to milliseconds
+        val sdf = SimpleDateFormat("HH:mm a") // Format the date as per your requirement
+        return sdf.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun convertUnixTimestampToDate(unixTimestamp: Long): String {
+        val date =
+            Date(unixTimestamp * 1000L) // Multiply by 1000 to convert seconds to milliseconds
+        val sdf = SimpleDateFormat("dd MMMM yyyy", Locale.US) // Adjust the format pattern as needed
+        return sdf.format(date)
+    }
+
+    fun getDayOfWeekFromTimestamp(timestamp: Long): String {
+        val date = Date(timestamp * 1000L)
+        val sdf = SimpleDateFormat(
+            "EEEE", Locale.US
+        )
+        return sdf.format(date)
     }
 }
