@@ -1,5 +1,3 @@
-
-https://github.com/karkiayush/WeatherSphere/assets/88551233/3110ac60-b460-4d67-bbc9-fffcc6d45612
 # WeatherSphere
 
 **Overview**<br>
