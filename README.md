@@ -34,3 +34,8 @@ https://github.com/karkiayush/WeatherSphere/assets/88551233/11f8262a-98e3-4192-b
 
 
 ![f5cb7fe7-98da-44f2-8e3e-fa1dcabef26a](https://github.com/karkiayush/WeatherSphere/assets/88551233/8b8e624f-d7ff-4084-bb52-594eb77ea148)
+
+
+<br>
+<br>
+![992904e3-afb8-4c40-bdfd-991564bed618](https://github.com/karkiayush/WeatherSphere/assets/88551233/ffe355ec-d82f-4a43-ad97-bbfff734031b)
