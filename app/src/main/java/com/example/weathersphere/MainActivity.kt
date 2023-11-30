@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 
@@ -22,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getWeatherData() {
         val inputFieldRef = findViewById<SearchView>(R.id.searchView)
-        val inputCity = inputFieldRef.
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://api.openweathermap.org/data/2.5/weather?")
