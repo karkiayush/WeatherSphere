@@ -79,6 +79,21 @@
         app:lottie_rawRes="@raw/sun" />
 
     <TextView
+        android:id="@+id/dayConditionId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/worksans"
+        android:text="Sunny"
+        android:textColor="@color/black"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunAnimationId"
+        tools:ignore="HardcodedText" />
+
+    <TextView
         android:id="@+id/dayId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,13 +120,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="96dp"
         android:fontFamily="@font/worksans"
         android:text="31 \u2103"
         android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/dayId"
         app:layout_constraintTop_toBottomOf="@+id/dayId"
         tools:ignore="HardcodedText" />
 
@@ -126,6 +140,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/minTempId"
         app:layout_constraintTop_toBottomOf="@+id/minTempId"
         tools:ignore="HardcodedText" />
 
@@ -141,6 +156,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tempId"
         app:layout_constraintTop_toBottomOf="@+id/tempId"
         tools:ignore="HardcodedText" />
 
